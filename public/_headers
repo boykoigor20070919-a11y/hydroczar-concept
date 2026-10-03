@@ -1,0 +1,9 @@
+# Response headers for Cloudflare Workers static assets.
+# Vite copies this file from ./public into ./dist at build time; Workers parses
+# it and never serves it. The noindex meta tag covers crawlers that render HTML
+# — this covers everything else, which matters for an unsolicited concept.
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
