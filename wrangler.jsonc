@@ -1,0 +1,12 @@
+{
+  "name": "hydroczar-concept",
+  "workers_dev": true,
+  "compatibility_date": "2026-09-25",
+
+  // Static-only Worker: no `main`, so there is no Worker script — Cloudflare
+  // serves ./dist directly. `_headers` and `robots.txt` are copied there from
+  // ./public by Vite and are honoured by Workers static assets.
+  "assets": {
+    "directory": "./dist"
+  }
+}
