@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Fixed header height plus air for anchor targets. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      transition: none !important;
+    }
+  }
+
+  html,
+  body,
+  #root {
+    background-color: #0b0e11;
+    color: #f4f1ec;
+  }
+
+  body {
+    font-family: Archivo, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    /* The sticky call bar sits above this on small screens. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* One focus treatment site-wide: the accent, never the browser default. */
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid #4fc3de;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgba(79, 195, 222, 0.3);
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: #0b0e11;
+    border: 1px solid rgba(244, 241, 236, 0.26);
+    color: #f4f1ec;
+  }
+
+  /* Clears the mobile sticky call bar so nothing ends up underneath it. */
+  .sticky-bar-clearance {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 768px) {
+    .sticky-bar-clearance {
+      padding-bottom: 0;
+    }
+  }
+}
